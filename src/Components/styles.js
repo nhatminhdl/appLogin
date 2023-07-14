@@ -22,13 +22,13 @@ export const StylesContainer = styled.View`
     flex: 1;
     padding: 25px;
     padding-top: ${StatusBarHeight + 10}px;
-    backgroud-color: ${primary}
+    background-color: ${primary}
 `;
 
 export const InnerContainer = styled.View`
     flex: 1;
     width: 100%;
-    alight-items: center;
+    align-items: center;
 `;
 
 export const WelcomeContainer = styled(InnerContainer)`
@@ -50,7 +50,6 @@ export const Avatar = styled.Image`
     margin: auto;
     border-radius: 50px;
     border-width: 2px;
-    border-color: ${secondary};
     margin-bottom: 10px;
     margin-top: 10px;
 `;
@@ -90,7 +89,7 @@ export const StyledFormArea = styled.View`
 `;
 
 export const StyledTextInput = styled.TextInput`
-    backgroud-color: ${secondary};
+    background-color: ${secondary};
     padding: 15px;
     padding-left: 55px;
     padding-right: 55px;
@@ -109,17 +108,17 @@ export const StyledInputLabel = styled.Text`
 `;
 
 export const LeftIcon = styled.View`
-    margin-top: 10px;
+   
     left: 15px;
     top: 38px;
-    position: alsolute;
+    position: absolute;
     z-index: 1;
 `;
 
 export const RightIcon = styled.TouchableOpacity`
-    left: 15px;
+    left: 80%;
     top: 38px;
-    position: alsolute;
+    position: absolute;
     z-index: 1;
 `;
 
@@ -137,7 +136,6 @@ export const StyledButton = styled.TouchableOpacity`
         background-color: ${green};
         flex-direction: row;
         justify-content: center;
-
 
     `}
 `;
@@ -169,7 +167,7 @@ export const Line = styled.View`
 export const ExtraView = styled.View`
     justify-content: center;
     flex-direction: row;
-    align-item: center;
+    align-items: center;
     padding: 10px;
 `;
 
@@ -182,7 +180,7 @@ export const ExtraText = styled.Text`
 
 export const TextLink = styled.TouchableOpacity`
     justify-content: center;
-    alight-items: centers;
+    align-items: centers;
 `;
 
 export const TextLinkContent = styled.Text`

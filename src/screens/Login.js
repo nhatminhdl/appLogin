@@ -44,22 +44,22 @@ const Login = ({navigation}) => {
     const [hidePassword, setHidePassword] = useState(true);
     const [message, setMessage] = useState();
     const [messageType, setMessageType] = useState();
-    const [isSubmitting,setSubmitting] = useState(false);
+   
     
-    const handleLogin = (credentials) => {
+    const handleLogin = (credentials, setSubmitting) => {
         const url = 'https://restful-booker.herokuapp.com/auth';
+        
         axios
         .post(url, credentials)
         .then((response)=>{
-            const result = response.token
+            const result = response.data
             
             console.log(result)
-
-            if(response.hasOwnProperty('token')){
+            if(result.hasOwnProperty('token')){
                 navigation.navigate('Welcome', {...result});
                 handleMessage('SUCCESS','SUCCESS');
+                
             }else{
-                setSubmitting(false);
                 handleMessage('Fail','FAIL');
             }
 
@@ -79,11 +79,12 @@ const Login = ({navigation}) => {
         setMessageType(type);
     }
   return (
+    <ScrollView>
     <StylesContainer>
         <StatusBar
             style='dark'
         />
-        <ScrollView>
+    
 
       <InnerContainer>
             <PageLogo resizeMode='cover' source ={require('../assets/images/ACVA-logo.png')}/>
@@ -92,15 +93,16 @@ const Login = ({navigation}) => {
             <SafeAreaView>
             
             <Formik
-                initialValues={{email:'', password:''}}
+                initialValues={{username:'', password:''}}
                 onSubmit={(values, {setSubmitting})=>{
                    
-                    if(values.email == ''||values.password ==''){
+                    if(values.username == ''||values.password ==''){
                         handleMessage('Please fill all the input');
-                        setSubmitting(false);
+                      
                     }else{
                         handleLogin(values, setSubmitting)
                     }
+                  
                 }}
             >
                 {
@@ -111,10 +113,10 @@ const Login = ({navigation}) => {
                                 icon="mail"
                                 placeholder = "example@gmail.com"
                                 placeholderTextColor={darklight}
-                                onChangeText={handleChange('email')}
-                                onBlur={handleBlur('email')}
-                                value={values.email}
-                                keyboardType='email-address'
+                                onChangeText={handleChange('username')}
+                                onBlur={handleBlur('username')}
+                                value={values.username}
+                               
                             />
 
                             <MyTextInput
@@ -145,7 +147,7 @@ const Login = ({navigation}) => {
 
                             <StyledButton google={true} onPress={handleSubmit}>
                                 <Fontisto name='google' color={primary} size={25}/>
-                                <ButtonText google={true} >
+                                <ButtonText >
                                     Sign in with Google
                                 </ButtonText>
                             </StyledButton>
@@ -164,8 +166,9 @@ const Login = ({navigation}) => {
             </Formik>
             </SafeAreaView>
         </InnerContainer>
-        </ScrollView>
+        
     </StylesContainer>
+    </ScrollView>
   )
 }
 
